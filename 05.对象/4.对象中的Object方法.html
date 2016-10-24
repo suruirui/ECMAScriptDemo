@@ -28,10 +28,10 @@
     console.log(car.hasOwnProperty('constructor')); //false
     var arr = [1,2];
     var test = function(){}
-    console.log(arr.constructor);
-    console.log(test.constructor);
+    console.log(arr.constructor); //Array()
+    console.log(test.constructor); //Function()
     console.log(arr.toString());
-
+    console.log(new String("1") instanceof String);
     var person = {};
     console.log(person.toString());
 

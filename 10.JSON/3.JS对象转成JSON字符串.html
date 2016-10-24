@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //js对象转成json字符串 stringify()
+    var tom = {
+        name:'tom',
+        age:20,
+        gender:'男'
+    }
+    //JSON.stringify可以根据传入的属性来确定哪些会被序列化
+    var tomJSON = JSON.stringify(tom,['age','gender']);
+    console.log(tomJSON);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /**
+     * 函数parseQuery用于解析url查询参数。语法如下：
+     var obj = parseQuery(query)
+     query是被解析的查询参数，函数返回解析后的对象。
+     使用范例如下：
+     var jerry = parseQuery("name=jerry&age=1");
+     jerry;  返回值：{name: " jerry ", age: "1"}
+     var tom = parseQuery("name=tom&age=12&gender&");
+     tom;    返回值：{name: "tom", age: "12", gender: ""}
+     请写出函数parseQuery的实现代码。
+     */
+    function parseQuery(url){
+        var obj = {};
+        var arr = url.split('\&');
+//      console.log(arr);
+        //遍历数组
+        for(var i in arr){
+            if(arr[i]){  //安&分割后如果不为空
+                var properties = arr[i].split("="); //["name","jerry"] ["age","1"] ["gender"]
+                var key,value;
+                if(properties.length == 1){  //如果只有属性没有值
+                    key = properties[0];
+                    value = "";
+                    console.log(key+","+value);
+                }else{
+                    key = properties[0];  //数组的第一个值作为对象的属性
+                    value = properties[1]; //数组的第2个值作为对象的值
+                }
+                obj[key] = value; //给对象的属性赋值  obj.name = jerry
+            }
+        }
+        return obj;
+    }
+
+    var url = 'name=jerry&age=1';
+    url = 'name=tom&age=12&gender&';
+    var obj = parseQuery(url); //通过解析url返回对象
+    console.log(obj);
+
+</script>
+</body>
+</html>

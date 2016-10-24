@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var date = new Date();//创建日期对象
+    date = new Date(2002,11,12);
+    date = new Date(2002,11);
+    //Date静态方法
+    date = Date.UTC(2012,11,12,12,12,12);//UTC时间,世界标准时间.接受年、月、日等变量作为参数，返回当前距离1970年1月1日 00:00:00 UTC的毫秒数
+    date = Date.parse("2012-11-12");  //parse方法用来解析日期字符串，返回距离1970年1月1日 00:00:00的毫秒数
+    console.log(date);
+
+
+
+//    console.log(Date.UTC());
+
+</script>
+</body>
+</html>

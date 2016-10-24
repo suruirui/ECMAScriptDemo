@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //补0
+    function padding(num){
+        return num <10?"0"+num:''+num;
+    }
+    function formDate(date,pattern){
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var dayOfMonth = date.getDate();
+        var hour = date.getHours();
+        var min = date.getMinutes();
+        var sec = date.getSeconds();
+        switch(pattern){
+            case 'yyyy':
+                return year+"";
+            case 'yyyy-mm-dd':
+                return year+"-"+padding(month)+"-"+dayOfMonth;
+            case 'yyyy-mm-dd hh:mm:ss':
+                return year+"-"+month+"-"+dayOfMonth+" "+hour +":"+min +":"+sec;
+        }
+    }
+    var date = new Date(2001, 8, 11, 8, 26, 8);
+    var dateStr = formDate(date,'yyyy');
+    dateStr = formDate(date,'yyyy-mm-dd');
+    dateStr = formDate(date,'yyyy-mm-dd hh:mm:ss');
+    console.log(dateStr);
+</script>
+</body>
+</html>

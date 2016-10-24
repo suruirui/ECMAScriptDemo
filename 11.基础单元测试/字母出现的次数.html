@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /**
+     * 找到数组[“a“，”x“，”b“，”d“，”m“，”a“，”k，“m”，“p”，“a”,“j”，]
+     * 出现最多的字母并给出个数和每一个所在的顺序。
+     */
+    var arr = ["a","x","d","b","d","m","a","d","k","d","m","p","d","a","j"];
+    //两个需求：1. 出现次数最多的字母
+//             2. 出现次数最多的字母所在位置
+    //满足两种映射关系(对象)，字母-出现次数   字母-出现的位置  "a":"0,6"
+    var countObj = {};  //  '字母':次数
+    var indexObj = {};
+
+    //遍历数组
+    for(var i in arr){
+        var key = arr[i]; //把每个字母做为对象的属性
+        if(!countObj[key]){  //如果对象没有以当前字母做为属性
+            countObj[key] = 1;
+            indexObj[key] = i; // a:0 x:1 d:2 b:3
+        }else{  //如果对象中有当前字母出现的次数
+            countObj[key]++;   //次数自增
+            indexObj[key] += ","+i;//d:2,5
+        }
+    }
+
+    var count=0,letter;  //定义变量记录出现次数最多的字母
+    for(var i in countObj){ //遍历对象，如果有值比count大，就让count记录
+        if(countObj[i] > count){
+            count = countObj[i];
+            letter = i;
+        }
+    }
+    console.log("出现次数最多的字母是："+letter);
+    console.log("出现次数最多的字母的索引是"+indexObj[letter]);
+
+</script>
+</body>
+</html>

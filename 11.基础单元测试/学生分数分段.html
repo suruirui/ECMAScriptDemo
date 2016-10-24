@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //根据学生分数计算等级
+    var score = prompt("请输入您的分数");
+//    var score = 100;
+    /**
+     *
+     * 90-100 1    92/10  9.2  Math.floor(9.2) 9   10-9 = 1  100/10 = 10  10-10 = 0
+     * 80-90  2    85/10  8.5  Math.floor(8.5) 8   10-8 = 2
+     * 70-80  3
+     * 60-70  4
+     * ....   .
+     * 10-20  9
+     * 0-10   10
+     */
+    function getLevel(score){
+        var level;
+        if(score < 0 || score>100 || isNaN(score) || score == null){
+            alert("请输入有效分数在0-100内");
+        }else{
+            if(score==100){
+                level = 1;
+            }else{
+                level = 10 - Math.floor(score/10);
+            }
+            console.log("根据您的分数你是"+level+"等生");
+        }
+    }
+    getLevel(score);
+
+
+</script>
+</body>
+</html>

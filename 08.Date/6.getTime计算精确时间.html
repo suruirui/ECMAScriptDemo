@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //计算精确时间
+    var start = new Date();
+    for(var i = 0;i <999999;i++){
+        document.write("hello world");
+    }
+    var end = new Date();
+    var time = end.getTime() - start.getTime();//getTime() 等同于valueOf()
+    console.log("打印99999999次hello world花费的时间是："+time);
+
+</script>
+</body>
+</html>

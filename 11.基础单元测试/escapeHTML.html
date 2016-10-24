@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+
+    function mEscapeHTML(htmlStr){
+        htmlStr = htmlStr.replace(/[<>&"]/g,function(m0){
+            switch(m0){
+                case '<':
+                    return '&lt;';
+                case '>':
+                    return '&gt;';
+                case '\&':
+                    return "&amp;";
+                case '\"':
+                    return "&quot;";
+            }
+        });
+        return htmlStr;
+    }
+    var html = '<div>Tom&Jerry</div>';
+    html = '<input type="text" name="mobile">';
+    html = mEscapeHTML(html);
+    console.log(html);
+</script>
+</body>
+</html>
