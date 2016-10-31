@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /**
+     * 判别所有类型
+     * @param obj
+     */
+    function type(obj){
+        if(obj){
+            return obj.constructor.toString().match(/function\s*([^(]*)/)[1];
+        }else{
+            return Object.prototype.toString.apply(obj).slice(8,-1);
+        }
+    }
+
+    console.log(type(null));
+    console.log(type(undefined));
+    console.log(type(1));
+    console.log(type(true));
+    console.log(type([]));
+</script>
+</body>
+</html>

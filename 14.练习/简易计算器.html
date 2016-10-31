@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .calc{
+            width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="calc">
+    <h2>简易计算器</h2>
+    <input type="text" id="left" />
+    <select name="operator" id="operator">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="%">%</option>
+    </select>
+    <input type="text" id="right"/>
+    <button id="btn">=</button>
+    <input type="text" id="result"/>
+    <button id="clear">C</button>
+</div>
+<script>
+    //通过dom方法 得到html元素的对象
+    var leftInput = document.getElementById("left");
+    var rightInput = document.getElementById("right");
+    var operator = document.getElementById("operator");
+    var btn = document.getElementById("btn");
+    var result = document.getElementById("result");
+    var clear = document.getElementById("clear");
+
+    //给btn增加一个点击事件
+    btn.onclick = function(){
+        if(leftInput.value == '' || rightInput.value == '' || isNaN(leftInput.value) || isNaN(rightInput.value) ){
+            alert("请输入有效的数值");
+            return;
+        }
+        switch(operator.value){
+            case '+':
+                result.value = Number(leftInput.value) +Number(rightInput.value);
+                break;
+            case '-':
+                result.value = Number(leftInput.value) - Number(rightInput.value);
+                break;
+            case '*':
+                result.value = Number(leftInput.value) * Number(rightInput.value);
+                break;
+            case '/':
+                if(rightInput.value == '0'){
+                    alert("0不能做除数");
+                    return;
+                }
+                result.value = (Number(leftInput.value) / Number(rightInput.value)).toFixed(2);
+                break;
+            case '%':
+                result.value = Number(leftInput.value) % Number(rightInput.value);
+                break;
+        }
+//      清除按钮点击事件
+        clear.onclick = function(){
+            leftInput.value = '';
+            rightInput.value = '';
+            result.value = '';
+        }
+    }
+</script>
+</body>
+</html>

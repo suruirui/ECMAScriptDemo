@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        /*计算器*/
+        .calc{
+            width: 215px;
+            height: 300px;
+            background-color: #6bb956;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            padding: 10px;
+            box-sizing: border-box;
+            border-radius: 5px;
+        }
+        /*结果输入框*/
+        .res{
+            width: 195px;
+            height: 50px;
+            border: none;
+            font-size: 20px;
+            background-color: #fff;
+            line-height: 50px;
+            text-align: right;
+            border-radius:0 0 5px 5px;
+        }
+        .table{
+            width: 195px;
+            height: 210px;
+            margin-top: 8px;
+        }
+        button{
+            border: none;
+            width: 32px;
+            height: 32px;
+            background-color: #ff5500;
+            color: #fff;
+            border-radius: 5px;
+            box-shadow: 1px 1px 1px #000;
+            cursor: pointer;
+        }
+        .clear{
+            width: 32px;
+            height: 32px;
+            background-color: #ff5500;
+            color: #fff;
+            border-radius: 5px;
+            box-shadow: 1px 1px 1px #000;
+            text-align: center;
+            line-height: 32px;
+            cursor: pointer;
+        }
+        .temp{
+            width: 195px;
+            height: 15px;
+            background-color: #fff;
+            text-align: right;
+            border-radius:5px 5px 0 0;
+        }
+    </style>
+</head>
+<body>
+<div class="calc">
+    <!--结果-->
+    <div id="temp" class="temp"></div>
+    <div id="result" class="res"/></div>
+    <table class="table">
+        <tr>
+            <td><button data-number="sin">sin</button></td>
+            <td><button data-number="cos">cos</button></td>
+            <td><button data-number="tan">tan</button></td>
+            <td><button data-number="pow">pow</button></td>
+            <td><div class="clear" id="clear">CE</div></td>
+        </tr>
+        <tr>
+            <td><button data-number="7">7</button></td>
+            <td><button data-number="8">8</button></td>
+            <td><button data-number="9">9</button></td>
+            <td><button data-number="/" id="divide">/</button></td>
+            <td><button data-number="%" id="remainder">%</button></td>
+        </tr>
+        <tr>
+            <td><button data-number="4">4</button></td>
+            <td><button data-number="5">5</button></td>
+            <td><button data-number="6">6</button></td>
+            <td><button data-number="*" id="multiply">*</button></td>
+            <td><button data-number="1/x">1/x</button></td>
+        </tr>
+        <tr>
+            <td><button data-number="1">1</button></td>
+            <td><button data-number="2">2</button></td>
+            <td><button data-number="3">3</button></td>
+            <td><button data-number="-" id="less">-</button></td>
+            <td rowspan="2"><div style="height: 75px; line-height: 75px;" id="calc" class="clear">=</div></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button style="width: 69px;" data-number="0">0</button></td>
+            <td><button data-number=".">.</button></td>
+            <td><button data-number="+" id="plus">+</button></td>
+        </tr>
+    </table>
+</div>
+<script>
+    //输入框
+     var result = document.getElementById("result");
+     var temp = document.getElementById("temp");
+    //等号按钮
+     var calc = document.getElementById("calc");
+    //清除按钮
+     var clear = document.getElementById("clear");
+     //通过标签名，得到button对象的数组
+     var keyBords = document.getElementsByTagName("button");
+      //通过遍历button节点对象的数组，找每一个button
+     for(var i =0; i<keyBords.length;i++){
+          var btn = keyBords[i];
+          //通过给一个button元素添加一个事件，在做相应操作的时候会执行函数中代码
+          btn.onclick = function(){
+            //通过dataset 获得button的值
+              var num = this.dataset["number"]; //this.dataset.number
+              var arr = getInput(num);
+              getNumOperator(arr);
+          }
+      }
+    var leftValue,rightValue='',operator = '';
+     //获得num之后，填入输入框进行计算
+     function getInput(num){
+        if(isNaN(num) && num != '.'){  //如果是非数字 并且不是.，说明是运算符
+            //如果是以下就直接运算
+            if(num == 'sin' || num == 'cos' || num == 'tan' || num == '1/x'){
+                operator = num;
+                getResult(result.innerHTML,num);
+            }else{
+                operator = num;
+                temp.innerHTML+= num;
+                result.innerHTML = '';
+                console.log(operator);
+            }
+        }else{       //否则就为数字和.
+            if(temp.innerHTML.match(/[+\-\*\/%]/)){
+                result.innerHTML += num;
+                rightValue += num;
+                console.log(num);
+                console.log("第二个值：",rightValue);
+            }else{
+                result.innerHTML += num; //在输入框显示
+                leftValue = result.innerHTML;
+                console.log("第一个值"+leftValue);
+                temp.innerHTML = leftValue;
+                console.log(operator);
+            }
+        }
+         return [leftValue,rightValue,operator];
+//         getNumOperator(leftValue,rightValue,operator);
+     }
+
+    //根据用户输入解析计算参数和操作符
+    function getNumOperator(arr){
+        leftValue = arr[0];
+        rightValue = arr[1];
+        operator = arr[2];
+        console.log("执行了..");
+        console.log(arr);
+        getResult(leftValue,rightValue,operator);
+    }
+
+    //点击=之后 进行计算
+    calc.onclick = getNumOperator;
+
+    //做计算的核心函数
+    function getResult(leftValue,rightValue,operator){
+        switch(operator){
+            case '+':
+                result.innerHTML = Number(leftValue) +Number(rightValue);
+                break;
+            case '-':
+                result.innerHTML = Number(leftValue) - Number(rightValue);
+                break;
+            case '*':
+                result.innerHTML = Number(leftValue) * Number(rightValue);
+                break;
+            case '/':
+                if(rightValue == '0'){
+                    alert("0不能做除数");
+                    return;
+                }
+                result.innerHTML  = Number(leftValue) / Number(rightValue);
+                break;
+            case '%':
+                result.innerHTML  = Number(leftValue) % Number(rightValue);
+                break;
+            case 'sin':
+                result.innerHTML = Math.sin(Number(leftValue));
+                break;
+            case 'cos':
+                result.innerHTML = Math.cos(Number(leftValue));
+                break;
+            case 'tan':
+                result.innerHTML = Math.tan(Number(leftValue));
+                break;
+            case '1/x':
+                if(leftValue == '0'){
+                    result.innerHTML = '0';
+                    return;
+                }
+                result.innerHTML = 1 / Number(leftValue);
+                    console.log(result.innerHTML);
+                break;
+        }
+    }
+    //清屏
+    clear.onclick = function(){
+        result.innerHTML = '';
+        temp.innerHTML = '';
+    }
+</script>
+</body>
+</html>

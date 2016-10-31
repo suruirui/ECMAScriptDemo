@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function(){
+            var btns = document.getElementsByTagName("button");
+            var inputs = document.getElementsByTagName("input");
+            btns[0].onclick  = function(){
+                for(var i=0;i<inputs.length;i++){
+                    inputs[i].checked = true;
+                }
+            }
+            btns[1].onclick  = function(){
+                for(var i=0;i<inputs.length;i++){
+                    inputs[i].checked = false;
+                }
+            }
+            btns[2].onclick  = function(){
+                for(var i=0;i<inputs.length;i++){
+                    inputs[i].checked = !inputs[i].checked;
+                }
+            }
+            //封装
+//            function all(flag){
+//                for(var i=0;i<inputs.length;i++){
+//                    inputs[i].checked = flag;
+//                }
+//            }
+//            btns[1].onclick  = function(){
+//                all(true);
+//            }
+        }
+        //this指向事件的调用者
+    </script>
+</head>
+<body>
+<button>全选</button>
+<button>取消</button>
+<button>反选</button>
+<ul>
+    <li><input type="checkbox"/></li>
+    <li><input type="checkbox"/></li>
+    <li><input type="checkbox"/></li>
+    <li><input type="checkbox"/></li>
+    <li><input type="checkbox"/></li>
+    <li><input type="checkbox"/></li>
+    <li><input type="checkbox"/></li>
+</ul>
+</body>
+</html>

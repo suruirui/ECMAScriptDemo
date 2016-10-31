@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-repeat: no-repeat;
+            background-size:cover;
+            height: 1000px;
+        }
+        .top{
+            width: 100%;
+            height: 50px;
+            /*background-color: #ccc;*/
+            background-color:rgba(0,0,0,0.5);
+            position: fixed;
+        }
+        .w{
+            width: 1200px;
+            height: 50px;
+            margin: 0 auto;
+        }
+        .red,.yellow,.green,.pink{
+            width: 60px;
+            height: 30px;
+            background-color: #ff0;
+            float: right;
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+        .red{
+            background-color: red;
+        }
+        .yellow{
+            background-color: yellow;
+        }
+        .green{
+            background-color: green;
+        }
+        .pink{
+            background-color: pink;
+        }
+        img{
+            width: 60px;
+            height: 30px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="top">
+    <div class="w">
+        <img src="1.jpg" id="img1" alt=""/>
+        <img src="2.jpg" id="img2" alt=""/>
+        <img src="3.jpg" id="img3" alt=""/>
+        <img src="4.jpg" id="img4" alt=""/>
+        <div class="red" id="red"></div>
+        <div class="yellow" id="yellow"></div>
+        <div class="green" id="green" ></div>
+        <div class="pink" id="pink"></div>
+    </div>
+</div>
+<div class="w">
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+</div>
+<script>
+  var red = document.getElementById('red');
+  var yellow = document.getElementById('yellow');
+  var green = document.getElementById('green');
+  var pink = document.getElementById('pink');
+  
+  var img1 = document.getElementById('img1');
+  var img2 = document.getElementById('img2');
+  var img3 = document.getElementById('img3');
+  var img4 = document.getElementById('img4');
+  if(window.localStorage){  //如果localStorage存在
+      document.body.style.backgroundColor = localStorage.getItem('bg-color');
+  }
+    //绑定点击事件
+  red.onclick = function(){
+      document.body.style.backgroundColor = 'red';
+      localStorage.setItem('bg-color','red');//为本地存储添加键值对
+  }
+  yellow.onclick = function () {
+      document.body.style.backgroundColor = 'yellow';
+      localStorage.setItem('bg-color','yellow');
+  }
+  green.onclick = function () {
+      document.body.style.backgroundColor = 'green';
+      localStorage.setItem('bg-color','green');
+  }
+  pink.onclick = function(){
+      document.body.style.backgroundColor = 'pink';
+      localStorage.setItem('bg-color','pink');
+  }
+
+  img1.onclick = function () {
+      document.body.style.backgroundImage = 'url(1.jpg)';
+  }
+  img2.onclick = function () {
+      document.body.style.backgroundImage = 'url(2.jpg)';
+  }
+  img3.onclick = function () {
+      document.body.style.backgroundImage = 'url(3.jpg)';
+  }
+  img4.onclick = function () {
+      document.body.style.backgroundImage = 'url(4.jpg)';
+  }
+</script>
+</body>
+</html>

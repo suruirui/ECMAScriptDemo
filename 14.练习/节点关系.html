@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>121313</div>
+<div>121313</div>
+<div id="one">121313</div>
+<div>121313</div>
+<div>121313</div>
+<div>121313</div>
+<div>121313</div>
+
+<script>
+    //父节点
+    //兄弟节点
+    //下个兄弟
+    //nextSibling  ie 678
+    //nextElementSibling 其他浏览器认识
+    //previousSibling
+    //previousElementSibling
+    //子节点
+//    firstChild
+    //firstElementChild
+    //lastChild
+    //lastElementChild
+    //所有子节点
+//    childNodes 标准属性 返回指定元素的子元素(直接子元素)集合 包括html节点 所有属性 文本节点
+        //火狐谷歌等高版本浏览器会把换行也看作节点
+    //nodeType == 1是元素节点
+    //另外IE678会将注释也当作子节点
+    var one = document.getElementById("one");
+    var div = one.nextElementSibling || one.nextSibling;
+    div.style.backgroundColor = "red";
+</script>
+</body>
+</html>

@@ -15,12 +15,12 @@
     console.log(new Object().constructor);
     console.log(new Date().constructor);
     console.log(new Array().constructor);
-    console.log(new Function().constructor);
+    console.log(new Function().constructor.toString());
     //自定义的对象类型
     function Person(){
             console.log("Person");
     }
-    console.log(new Person().constructor);
+    console.log(new Person().constructor.toString());
 
     /**
      * 结论：constructor可以判别标准类型，(undefined/null除外),
