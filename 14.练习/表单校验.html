@@ -3,8 +3,80 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+    <script>
+        window.onload = function () {
+
+        }
+    </script>
 </head>
 <body>
+<fieldset style="width: 500px; margin: 0px auto;">
+    <legend>注册新用户</legend>
+    <form action="success.html" method="post" onsubmit="return checkAll();">
+        <table align="center" width="500" cellpadding="5">
+            <tr>
+                <td width="30%" align="right">用户名:</td>
+                <td>
+                    <input type="text" id="username" onblur="usernameCheck()">
+                    <span id="usernameSpan"></span>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">密码:</td>
+                <td>
+                    <input type="password" id="password" onblur="passwordCheck()">
+                    <span id="passwordSpan"></span>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">确认密码:</td>
+                <td>
+                    <input type="password" id="confirm" onblur="confirmCheck()">
+                    <span id="confirmSpan"></span>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">邮箱:</td>
+                <td>
+                    <input type="text" id="email" onblur="emailCheck()">
+                    <span id="emailSpan"></span>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">城市:</td>
+                <td>
+                    <select id="city" onchange="cityCheck()">
+                        <option value="">-请选择城市-</option>
+                        <option value="bj">北京</option>
+                        <option value="cd">成都</option>
+                        <option value="gz">广州</option>
+                    </select>
+                    <span id="citySpan"></span>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">性别:</td>
+                <td>
+                    <label><input type="radio" name="gender" value="male" onclick="genderCheck()"> 男 </label>
+                    <label><input type="radio" name="gender" value="female" onclick="genderCheck()"> 女 </label>
+                    <span id="genderSpan"></span>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">兴趣:</td>
+                <td>
+                    <label><input type="checkbox" name="interest" value="somke" onclick="interestCheck()"> 抽烟 </label>
+                    <label><input type="checkbox" name="interest" value="drink" onclick="interestCheck()"> 喝酒 </label>
+                    <label><input type="checkbox" name="interest" value="tangtou" onclick="interestCheck()"> 烫头 </label>
+                    <span id="interestSpan"></span>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" colspan="2"><input type="submit" value="注册新用户"></td>
+            </tr>
+        </table>
+    </form>
+</fieldset>
 
 </body>
 </html>

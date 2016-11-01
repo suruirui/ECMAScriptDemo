@@ -19,22 +19,23 @@
         }
     </style>
     <script>
-        window.onload = function(){
+        window.onload = function () {
             var lis = document.getElementsByTagName("li");
             for(var i=0;i<lis.length;i++){
-                if(i%2==0){
-                    lis[i].style.backgroundColor = "#eee";
-                }else{
+                if(i % 2 == 0){
                     lis[i].style.backgroundColor = "#ddd";
+                }else{
+                    lis[i].style.backgroundColor = "#eee";
                 }
-                lis[i].onmouseover = function () {
-                    this.className = 'current';
+                //onmouseover鼠标进入事件
+                lis[i].onmouseover = function(){ //this指向当前事件的调用者
+                    this.className = "current";
                 }
+                //onmouseout鼠标移出事件
                 lis[i].onmouseout = function(){
                     this.className = "";
                 }
             }
-
         }
     </script>
 </head>
@@ -79,6 +80,5 @@
         </li>
     </ul>
 </div>
-
 </body>
 </html>

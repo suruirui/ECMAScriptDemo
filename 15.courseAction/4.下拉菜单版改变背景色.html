@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            background-repeat: no-repeat;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+          //获取颜色菜单对象
+//            var colorSelect = document.getElementById("color");
+//            document.body.style.backgroundColor = colorSelect.value;
+//            //下拉菜单改变的时候有个onchange事件
+//            colorSelect.onchange = function(){
+//                document.body.style.backgroundColor = colorSelect.value;
+//            }
+            //获取主题下拉菜单
+            var themeSelect = document.getElementById('theme');
+            document.body.style.backgroundImage = 'url(1.jpg)';
+            themeSelect.onchange = function(){
+                switch(themeSelect.value){
+                    case 'world':
+                        document.body.style.backgroundImage = 'url(3.jpg)';
+                        break;
+                    case 'city':
+                        document.body.style.backgroundImage = 'url(2.jpg)';
+                        break;
+                    case 'cartoon':
+                        document.body.style.backgroundImage = 'url(1.jpg)';
+                        break;
+                    case 'nba':
+                        document.body.style.backgroundImage = 'url(4.jpg)';
+                        break;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<select id="color">
+    <option value="green">绿</option>
+    <option value="red">红</option>
+    <option value="pink">粉</option>
+    <option value="blue">蓝</option>
+</select>
+
+<select id="theme">
+    <option value="world">世界名胜</option>
+    <option value="city">城市风景</option>
+    <option value="cartoon">卡通动漫</option>
+    <option value="nba">NBA球星</option>
+</select>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .box{
+            width: 800px;
+            height: 40px;
+            margin: 0 auto;
+            color:yellow;
+            font-size: 38px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            function padding(num){
+                return num < 10 ?'0'+num:''+num;
+            }
+            var box = document.getElementById("box");
+            var endTime = new Date("2016/11/11");
+            setInterval(clock,1000);
+            function clock(){
+                var now = new Date();
+                var time = (endTime.getTime() - now.getTime())/1000;
+                var d = parseInt(time/3600 /24);
+                var h = parseInt(time/3600 % 24);
+                var m = parseInt(time/60 % 60);
+                var s = parseInt(time % 60);
+                box.innerHTML = "距离双11购物狂欢节还剩下"+padding(d)+"天"+padding(h)+"时"
+                +padding(m)+"分"+ padding(s)+"秒";
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="box" id="box"></div>
+</body>
+</html>

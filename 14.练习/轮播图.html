@@ -3,8 +3,127 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .box{
+            width: 590px;
+            height: 340px;
+            border: 1px solid red;
+            overflow: hidden;
+            margin:100px auto;
+            position: relative;
+            cursor: pointer;
+        }
+        img{
+            width: 590px;
+            height: 340px;
+        }
+        .btn{
+            width: 30px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, .1);
+            color: #fff;
+            position: absolute;
+            display: none;
+            top: 50%;
+            margin-top: -25px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+        }
+        .left{
+            left: 0;
+        }
+        .right{
+            right: 0;
+        }
+        .box:hover .btn{
+            display: block;
+        }
+        .btn:hover{
+            background-color: rgba(0, 0, 0, .7);
+        }
+        .pointer{
+            width: 180px;
+            height: 18px;
+            position: absolute;
+            bottom:30px;
+            left: 40px;
+            z-index: 1;
+        }
+        .pointer i{
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .pointer .cur{
+            background-color: red;
+        }
+        .silder li{
+            display: inline-block;
+            position: absolute;
+            top:0;
+            left: 0;
+            display: none;
+        }
+        .silder .show{
+            display: block;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var box = document.getElementById("box");
+            var mul = document.getElementById("mul");
+            var lis = mul.children;
+            var pointer = document.createElement("div");
+            pointer.setAttribute("class","pointer");
+            box.appendChild(pointer);
+            //根据li的个数来创建i
+            for(var i=0;i<lis.length;i++){
+                var myi = document.createElement("i");
+                pointer.appendChild(myi);
+            }
+            var is = pointer.children;
+            is[0].setAttribute("class","cur");
+
+            //s手动轮播
+           for(var j=0;j<is.length;j++){
+               is[j].index = j;
+               is[j].onmouseover = function(){
+                   //去掉所有
+                   for(var i=0;i<is.length;i++){
+                       is[i].className = "";
+                       lis[i].className = "";
+                   }
+                   //自己加上
+                   this.className = "cur";
+                   lis[this.index].className = "show";
+               }
+           }
+
+        }
+    </script>
 </head>
 <body>
-
+<div class="box" id="box">
+    <div class="silder">
+        <ul id="mul">
+            <li class="show"><a href="#"><img src="01.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="02.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="03.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="04.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="05.jpg" alt=""/></a></li>
+        </ul>
+        <div class="btn left" id="left">&lt;</div>
+        <div class="btn right" id="right">&gt;</div>
+    </div>
+</div>
 </body>
 </html>
