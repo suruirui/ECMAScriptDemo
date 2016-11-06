@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .box{
+            width: 500px;
+            height: 30px;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <select name="year" id="yearSelect"><option value="">-请选择年份-</option></select>
+    <select name="month" id="monthSelect"><option value="">-请选择月份-</option></select>
+    <select name="day" id="daySelect"><option value="">-请选择日期-</option></select>
+</div>
+</body>
+<script>
+    function $(id){
+        return document.getElementById(id);
+    }
+
+    //生成年份
+    var now = new Date();
+    for(var i = now.getFullYear();i>=now.getFullYear()-150;i--){
+        var option = document.createElement("option");
+        option.value = i;
+        option.innerHTML = i+'';
+        $("yearSelect").appendChild(option);
+    }
+
+    //生成月份
+    for(var i=1;i<=12;i++){
+        var option = document.createElement("option");
+        option.value = i;
+        option.innerHTML = i+'';
+        $('monthSelect').appendChild(option);
+    }
+
+    //生成日期,年份和月份改变的时候都需要生成
+    $("yearSelect").onchange = getDate;
+    $("monthSelect").onchange = getDate;
+
+    function getDate(){
+        //如果日期个数大于1，删除原有option
+        var optionArr = $("daySelect").options;
+        if(optionArr.length >1){
+            for(var i = 1;i<optionArr.length;i++){
+                $("daySelect").removeChild(optionArr[i--]);
+            }
+        }
+        //不选日期和月份 不生成日期
+        var year = $("yearSelect").value;
+        var month = $("monthSelect").value;
+        if(year == "" || month == ""){
+            return;
+        }
+        //根据选中的年份和月份生成日期
+        var day = 0;
+        if(month == '1' || month == '3'|| month == '5'|| month == '7'|| month == '8'|| month == '10'|| month == '12'){
+            day = 31;
+        }else if(month == '2'){
+            day = leapYear(year)?29:28;
+        }else{
+            day = 30;
+        }
+        for(var i=1;i<=day;i++){
+            var option = document.createElement("option");
+            option.value = i;
+            option.innerHTML = i+'';
+            $('daySelect').appendChild(option);
+        }
+    }
+    //闰年计算:
+    // 1.普通年能被4整除且不能被100整除的为闰年。如2004年就是闰年,1900年不是闰年
+    // 2.世纪年能被400整除的是闰年。如2000年是闰年，1900年不是闰年
+    function leapYear(year){
+        return !(year % (year % 100 ? 4 : 400));
+    }
+
+</script>
+</html>

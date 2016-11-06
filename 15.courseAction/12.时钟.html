@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .clock{
+            width: 600px;
+            height: 600px;
+            margin: 30px auto;
+            background: url("clock.jpg");
+            position: relative;
+        }
+        .clock div{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .h{
+            background: url("hour.png") no-repeat center;
+        }
+        .m{
+            background: url("minute.png") no-repeat center;
+        }
+        .s{
+            background: url("second.png") no-repeat center;
+        }
+    </style>
+</head>
+<body>
+<div class="clock" id="clock">
+    <div class="h"></div>
+    <div class="m"></div>
+    <div class="s"></div>
+</div>
+<script>
+    var clock = document.getElementById("clock");
+    var divs = clock.children;
+    //使用定时器
+    setInterval(function(){
+        //获取当前时间
+        var date = new Date();
+        //分别得到秒针、分针、时针走的时间
+        //由于date.getHours()等 只能得到整数 ，所以要计算从正点开始 走过的时间
+        var ms= 0,s= 0,m= 0,h=0;
+        ms = date.getMilliseconds();//当前毫秒数
+        s = date.getSeconds() + ms/1000;
+        m = date.getMinutes() + s/60;
+        h = date.getHours() + m/60;
+        //计算时针分针秒针的角度
+        //360度数一圈 60秒 秒针走一秒6度  60分钟 分针走一分钟也是6度 12个小时，时针走一个小时是30度
+        //秒针旋转度数
+        divs[2].style.WebkitTransform = "rotate("+s*6+"deg)";
+        divs[2].style.MozTransform = "rotate("+s*6+"deg)";  //兼容处理
+
+        //分针旋转度数
+        divs[1].style.webkitTransform = "rotate("+m*6+"deg)";
+        //时针旋转度数
+        divs[0].style.webkitTransform = "rotate("+h*30+"deg)";
+    },100);
+
+</script>
+</body>
+</html>

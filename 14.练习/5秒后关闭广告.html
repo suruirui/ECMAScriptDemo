@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        img{
+            position: absolute;
+            top: 0;
+        }
+        #left{
+            left: 0;
+        }
+        #right{
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+<img src="1.gif" alt="" id="left"/>
+<img src="2.gif" alt="" id="right"/>
+</body>
+<script>
+    function $(id){
+        return document.getElementById(id);
+    }
+    function show(id){
+        $(id).style.display = "block";
+    }
+    function hide(id){
+        $(id).style.display = "none";
+    }
+    setTimeout(closeAd,5000);
+    function closeAd(){
+        hide("left");
+        hide("right");
+    }
+</script>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        ul{
+            list-style-type: none;
+        }
+        *{margin:0;padding: 0;}
+        .box {
+            margin: 100px auto;
+            width: 600px;
+            height: auto;
+            padding: 30px 0;
+            text-align:left;
+            border:1px solid red;
+        }
+        textarea {
+            width: 550px;
+            resize: none;  /*防止用户拖动 右下角*/
+        }
+        .box li {
+            width: 550px;
+            line-height: 30px;
+            border-bottom:1px dashed #ccc;
+            margin-left: 10px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        .box li a {
+            float: right;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var txt = document.getElementById("txt");
+            var btn = document.getElementById("btn");
+            var content = document.getElementById("content");
+            btn.onclick = function(){
+                if(txt.value == ''){
+                    alert("输入不能为空");
+                    return;
+                }
+                var newLi = document.createElement("li");
+                newLi.innerHTML = txt.value + "<a href ='javascript:;'>删除</a>";
+
+                txt.value = "";
+                var lis = content.children;
+                if(lis.length ==0){
+                    content.appendChild(newLi);
+                }else{
+                    content.insertBefore(newLi,lis[0]);
+                }
+                var as = document.getElementsByTagName("a"); //获得所a
+                for(var i=0;i<as.length;i++){
+                    as[i].onclick = function(){
+                        content.removeChild(this.parentNode);
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="box">
+    <span>有什么新鲜事儿想告诉大家: </span>
+    <textarea name="" id="txt" cols="30" rows="10"></textarea>
+    <button id="btn">发布</button>
+    <ul id="content"></ul>
+</div>
+</body>
+</html>

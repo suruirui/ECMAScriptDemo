@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="file" id="file"/><span></span>
+</body>
+<script>
+    function $(id){
+        return document.getElementById(id);
+    }
+    $("file").onchange = function () {
+        var path = this.value;
+        var suffix = path.slice(path.lastIndexOf(".")).toUpperCase();
+
+        if(suffix == '.JPG' || suffix == '.PNG'){
+            $("file").nextElementSibling.innerHTML = "格式正确";
+        }else{
+            $("file").nextElementSibling.innerHTML = "格式错误的";
+        }
+    }
+
+</script>
+</html>

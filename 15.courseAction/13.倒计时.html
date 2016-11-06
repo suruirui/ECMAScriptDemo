@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .time{
+            width: 1000px;
+            height: 40px;
+            font-size: 30px;
+            color: red;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+<div class="time" id="time"></div>
+<script>
+    var time = document.getElementById("time");
+    var endTime = new Date("2016/11/11");
+
+    //补0函数
+    function padding(num){
+        return num>10?''+num:'0'+num;
+    }
+    //定时器
+    setInterval(function () {
+        var now = new Date();
+        //取得最终时间和当前时间的差值秒数
+        var reverseTime = (endTime.getTime() - now.getTime()) /1000;
+        var s = parseInt(reverseTime%60);
+        var m = parseInt(reverseTime/60 % 60);
+        var h = parseInt(reverseTime/3600 % 24);
+        var d = parseInt(reverseTime/3600 /24);
+        time.innerHTML = "距离双11狂欢节还有："+padding(d)+"天"+padding(h)+"小时"+padding(m)+"分"+padding(s)+"秒";
+    },100);
+
+
+</script>
+</body>
+</html>

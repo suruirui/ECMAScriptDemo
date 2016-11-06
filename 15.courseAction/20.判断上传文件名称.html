@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="file" id="file"/><span></span>
+</body>
+<script>
+    /**
+     *  两个要点：1. file input的onchange事件 ，value是文件名称(路径)
+     *           2. 字符串截取 得到文件后缀名
+     */
+    function $(id){
+        return document.getElementById(id);
+    }
+    $("file").onchange = function(){
+        var path = this.value;
+        console.log(path);
+        //截取字符串得到文件后缀名  C:\fakepath\3.jpg  :\fakepath\se.tup.log
+        var suffix = path.slice(path.lastIndexOf("."));
+        console.log(suffix);
+        //要求上传的文件为tup
+        if(suffix == '.jpg' || suffix == '.png' || suffix == 'gif'){
+             $("file").nextElementSibling.innerHTML = "文件格式正确";
+        }else{
+            $("file").nextElementSibling.innerHTML = "错误的文件格式";
+        }
+    }
+
+</script>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .box {
+            position: absolute;
+            top:100px;
+            left:0;
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+<button id="btn">开始</button>
+<div class="box" id="box"></div>
+</body>
+<script>
+    function $(id){
+        return document.getElementById(id);
+    }
+    //起始位置 结束位置 步长
+    var start= 0,target =500;
+    $("btn").onclick = function () {
+        setInterval(function(){
+            start += (target - start)/30;
+            $("box").style.left = start +'px';
+        },10);
+    }
+</script>
+</html>
